@@ -9,10 +9,13 @@
 <script setup>
     import {ref} from "vue"
     let randomNum = ref()
+    const history = []
     const startRandom = () =>{
       let endpoint = +document.querySelector('#end').value
       let random = Math.floor(Math.random()*endpoint)
       randomNum.value = random
+      history.push(random)
+      console.log(history)
     }
 </script>
 
