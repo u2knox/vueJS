@@ -1,12 +1,11 @@
-<script setup>
-</script>
-
 <template>
   <div>
-
+    <RandomNum />
   </div>
 </template>
 
-<style scoped>
+<script setup>
+import RandomNum from '@/components/RandomizerNum.vue'
+</script>
 
-</style>
+<style scoped></style>
