@@ -9,13 +9,11 @@
     <!-- <div v-for="i in array" :key="i">
       {{ i }}
     </div> -->
-    <div 
-    v-for="(value, key) in data"
-    :key="value.id" 
-    :class="{ 'user-even': value.id % 2 === 0, 
-              'user-odd': value.id% 2 !== 0,
-              'user-selected': isUserSelected(value.id)}"
-    @click="myFunc(value.id)">
+    <div v-for="(value, key) in data" :key="value.id" :class="{
+      'user-even': value.id % 2 === 0,
+      'user-odd': value.id % 2 !== 0,
+      'user-selected': isUserSelected(value.id)
+    }" @click="myFunc(value.id)">
       {{ key + 1 }} {{ value.email }}
     </div>
   </div>
@@ -271,9 +269,16 @@ setTimeout(() => {
 
 const selectedUser = ref([])
 
-const myFunc = (userId) => selectedUser.value.push(userId)
+const myFunc = (userId) => {
+  if (isUserSelected(userId)) {
+    selectedUser.value = selectedUser.value.filter((id)=>id!==userId)
+  } else {
+    selectedUser.value.push(userId)
+  }
+}
 
-const isUserSelected = (id)=>{
+const isUserSelected = (id) => {
+
   return selectedUser.value.includes(id)
 }
 
@@ -286,6 +291,7 @@ const isUserSelected = (id)=>{
   border-radius: 8px;
   cursor: pointer;
 }
+
 .user-odd {
   border: 1px red solid;
   margin-bottom: 20px;
@@ -293,7 +299,7 @@ const isUserSelected = (id)=>{
   cursor: pointer;
 }
 
-.user-selected{
+.user-selected {
   background-color: aqua;
 }
 </style>
