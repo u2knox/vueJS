@@ -1,85 +1,52 @@
-<script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
+  <div>
+    <div class="block" id="first" v-show="blockStat.first">First</div>
+    <div class="block" id="second" v-show="blockStat.second">Second</div>
+    <div class="block" id="thierd" v-show="blockStat.thierd">Thierd</div>
+  </div>
 </template>
 
+<script setup>
+import { ref } from 'vue'
+const blockStat = ref({
+  first: true,
+  second: true,
+  thierd: true
+})
+let firstDiv
+let secondDiv
+let thierdDiv
+setTimeout(() => {
+  firstDiv = document.querySelector('#first')
+  secondDiv = document.querySelector('#second')
+  thierdDiv = document.querySelector('#thierd')
+  console.log(firstDiv, secondDiv, thierdDiv)
+  firstDiv.addEventListener('click',()=>{
+  if(blockStat.value.second && blockStat.value.thierd){
+    blockStat.value.second = false
+    blockStat.value.thierd = false
+  }else{
+    blockStat.value.second = true
+    blockStat.value.thierd = true
+  }
+})
+secondDiv.addEventListener('click',()=>{
+  blockStat.value.first ? blockStat.value.first = false : blockStat.value.first = true
+})
+thierdDiv.addEventListener('click',()=>{
+  blockStat.value.thierd ? blockStat.value.thierd = false : blockStat.value.thierd = true
+})
+}, 0)
+
+</script>
+
 <style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
+.block {
+  width: 100px;
+  height: 50px;
+  border-radius: 15px;
+  background-color: gray;
+  border: 1px black solid;
+  text-align: center ;
 }
 </style>
