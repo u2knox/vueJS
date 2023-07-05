@@ -60,6 +60,8 @@ import { ref, computed } from 'vue'
 // const power = ref(1)
 // const squre = computed(() => numb.value ** power.value)
 // const isVisible = ref<number>(false)
+
+
 // const color = ref('teal')
 // const width = ref('100')
 // const height = ref('100')
