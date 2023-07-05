@@ -1,6 +1,6 @@
 <template>
   <div>
-    <label :for="`input${inputId}`">{{ props.label }}{{ value }}</label>
+    <label v-if="props.label" :for="`input${inputId}`">{{ props.label }}</label>
     <input
       :value="props.modelValue"
       @input="emits('update:modelValue', $event.target?.value)"
@@ -12,10 +12,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
 
 interface Props {
-  label: string
+  label?: string
   placeholder?: string
   modelValue?: string
 }
@@ -25,7 +24,7 @@ interface Emits {
 }
 const emits = defineEmits<Emits>();
 
-const value = ref<string>('')
+const callEvent = (event : any) => emits('update:modelValue', event.target?.value)
 
 const inputId = Math.round(Math.random() * 1000000)
 </script>
