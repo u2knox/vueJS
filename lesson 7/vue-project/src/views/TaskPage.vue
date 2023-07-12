@@ -1,17 +1,31 @@
 <template>
   <div>
     <h1>Task page</h1>
-    <h2>{{ props.id }}</h2>
+    <table>
+        <tbody>
+            <tr>
+                <td>ID</td>
+                <td>{{props.id}}</td>
+            </tr>
+            <tr>
+                <td>Title</td>
+                <td>{{task.title}}</td>
+            </tr>
+        </tbody>
+    </table>
   </div>
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { ref,onMounted } from 'vue'
+import type { Task } from '@/types/task'
 
 interface Props {
   id: number
 }
 const props = defineProps<Props>()
+
+const task = ref<Task>({} as Task)
 
 onMounted(async () => {
   const commentQuery = await fetch('https://jsonplaceholder.typicode.com/comments/1')
