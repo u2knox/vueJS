@@ -12,12 +12,12 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onBeforeMount, onMounted, onBeforeUnmount, onUnmounted } from 'vue'
+import type { Task } from '@/types/task'
 
-import type { Task } from '@/types/task';
+import { ref, onBeforeMount, onMounted, } from 'vue'
 
 interface Emits {
-  (e: 'addTask', task: Task): void
+  (e: 'addTask', task: Object): void
 }
 const emits = defineEmits<Emits>();
 

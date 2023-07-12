@@ -5,7 +5,7 @@
         <router-link :to="{ name: 'HomePage' }">Главная</router-link>
       </li>
       <li>
-        <router-link :to="{ name: 'TaskPage' }">Задачи</router-link>
+        <router-link :to="{ name: 'TaskList' }">Лист Задач</router-link>
       </li>
       <li>
         <router-link :to="{ name: 'AboutPage' }">О нас</router-link>
@@ -15,6 +15,10 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
 
-<style scoped></style>
+</script>
+
+<style scoped>
+
+</style>
